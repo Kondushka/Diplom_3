@@ -1,54 +1,66 @@
-from pages.base_page import Methods
+import allure 
+from pages.base_page import BasePage
 from locators.locators_buttons import LocatorsButtons as LB
 from locators.locators_elements import LocatorsElements as LE                               
 
-class MainPage(Methods):
+class MainPage(BasePage):
 
+    @allure.step('Нажимаем "конструктор"')
     def click_constructor(self):
         self.find_element_and_click(LB.BUTTON_CONSTRUCTOR)            
         self.wait_visible(LE.BURGER_TITLE)
         return self.driver.current_url
         
+    @allure.step('Нажимаем "лента заказов"')
     def click_feed_orders(self):
         self.find_element_and_click(LB.BUTTON_FEED_ORDERS)            
         self.wait_visible(LE.FEED_ORDERS_LIST)
         return self.driver.current_url
         
+    @allure.step('Открываем плашку с деталями ингредиента')
     def click_ingredient(self):
         self.wait_clickable_and_click(LB.BUTTON_INGREDIENT)
         return self.wait_visible(LE.DETAILS_INGREDIENT)
         
+    @allure.step('Закрываем плашку с деталями деталей ингредиента')
     def close_pop_up_ingredient(self): 
         self.find_element_and_click(LB.BUTTON_EXIT_POP_UP)
         return self.wait_invisible(LE.DETAILS_INGREDIENT)
         
+    @allure.step('Нажимаем "соусы"')
     def click_sauce(self):
         self.wait_visible(LB.BUTTON_SAUCE)
         return self.find_element_and_click(LB.BUTTON_SAUCE)
         
+    @allure.step('Нажимаем "личный кабинет"')
     def click_profile(self):
         self.wait_visible(LB.BUTTON_PROFILE)
         self.find_element_and_click(LB.BUTTON_PROFILE)
         return self.driver.current_url
     
+    @allure.step('Кладем в корзину соус')
     def drag_and_drop_sauce_spicy(self):
         self.wait_visible(LE.SAUCE_SPICY)     
         return self.drag_and_drop_element(LE.SAUCE_SPICY, LE.BUSCET)
     
+    @allure.step('Кладем в корзину булку')
     def drag_and_drop_bun(self):
         self.wait_visible(LE.BUN)     
         return self.drag_and_drop_element(LE.BUN, LE.BUSCET)
         
+    @allure.step('Кладем в корзину соус и проверяем, что кол-во увеличилось')
     def drag_and_drop_check_count(self):
         self.click_sauce()
         self.wait_visible(LE.COUNT_INGREDIENT_0) 
         self.drag_and_drop_sauce_spicy()      
         return self.wait_visible(LE.COUNT_INGREDIENT_1)
     
+    @allure.step('Нажимаем "оформить заказ"')
     def click_add_order(self):
         self.wait_clickable_and_click(LB.BUTTON_ADD_ORDER)
         return self.wait_visible(LE.POP_UP_ADD_ORDER)
     
+    @allure.step('Создаем заказ и получаем номер заказа')
     def create_order(self):
         self.drag_and_drop_bun()
         self.drag_and_drop_sauce_spicy()
@@ -57,6 +69,7 @@ class MainPage(Methods):
         element = self.find_element(LE.ORDER_NUMBER).text
         return f"0{element}"
     
+    @allure.step('Закрываем плашку об успешном оформлении заказа')
     def close_pop_up_order(self):
         self.wait_visible(LE.POP_UP_ADD_ORDER)    
         self.find_element_and_click(LB.BUTTON_EXIT_POP_UP)

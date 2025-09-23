@@ -27,13 +27,13 @@ def feed_orders_page(driver):
 def profile_page(driver):
     return ProfilePage(driver)
 
-@pytest.fixture(params=['Chrome', 'Firefox'])
-def driver(request):
-    print("\nstart browser for test..")
-    if request.param == 'Chrome':
-        driver = webdriver.Chrome()
-    else:
-        driver = webdriver.Firefox()
-    yield driver
-    print("\nquit browser..")
-    driver.quit()
+# @pytest.fixture(params=['Chrome', 'Firefox'])
+# def driver(request):
+#     print("\nstart browser for test..")
+#     if request.param == 'Chrome':
+#         driver = webdriver.Chrome()
+#     else:
+#         driver = webdriver.Firefox()
+#     yield driver
+#     print("\nquit browser..")
+#     driver.quit()

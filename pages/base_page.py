@@ -11,8 +11,6 @@ class BasePage:
     def open_url(self, url):
         self.driver.get(url)
 
-class Methods(BasePage):
-    
     def find_element(self, locator):
         return self.driver.find_element(*locator)
     

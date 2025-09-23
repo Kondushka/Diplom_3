@@ -12,7 +12,7 @@ class TestOrderFeed:
         profile_page.click_my_order()
         assert profile_page.check_item_order()
         
-    @allure.title('Проверка увеличения счётчика "Выполнено" при создании нового заказа за всё время')        
+    @allure.title('Проверка увеличения счётчика "Выполнено" при создании нового заказа ЗА ВСЕ ВРЕМЯ')        
     def test_assert_all_day_done_counter_grew(self, login_page, feed_orders_page):
         login_page.open_url(Urls.HOME_PAGE)
         login_page.login_user()
@@ -25,7 +25,7 @@ class TestOrderFeed:
         after = feed_orders_page.get_all_day_number_order()
         assert befor < after
         
-    @allure.title('Проверка увеличения счётчика "Выполнено" при создании нового заказа за сегодня')       
+    @allure.title('Проверка увеличения счётчика "Выполнено" при создании нового заказа ЗА СЕГОДНЯ')       
     def test_assert_today_done_counter_grew(self, login_page, feed_orders_page):
         login_page.open_url(Urls.HOME_PAGE)
         login_page.login_user()
