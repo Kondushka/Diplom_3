@@ -5,10 +5,15 @@ from pages.login_page import LoginPage
 from pages.profile_page import ProfilePage
 from pages.feed_orders_page import FeedOrdersPage
 
-@pytest.fixture
-def driver():
-    driver = webdriver.Chrome()
+@pytest.fixture(params=['Chrome', 'Firefox'])
+def driver(request):
+    print("\nstart browser for test..")
+    if request.param == 'Chrome':
+        driver = webdriver.Chrome()
+    else:
+        driver = webdriver.Firefox()
     yield driver
+    print("\nquit browser..")
     driver.quit()
 
 @pytest.fixture()
@@ -27,13 +32,4 @@ def feed_orders_page(driver):
 def profile_page(driver):
     return ProfilePage(driver)
 
-# @pytest.fixture(params=['Chrome', 'Firefox'])
-# def driver(request):
-#     print("\nstart browser for test..")
-#     if request.param == 'Chrome':
-#         driver = webdriver.Chrome()
-#     else:
-#         driver = webdriver.Firefox()
-#     yield driver
-#     print("\nquit browser..")
-#     driver.quit()
+
