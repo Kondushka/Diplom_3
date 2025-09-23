@@ -3,13 +3,13 @@ from data.urls import Urls
 
 class TestProfileUser:
     
-    @allure.title("Проверка сперехода по клику на «Личный кабинет»")
+    @allure.title("Проверка перехода по клику на «Личный кабинет»")
     def test_open_profile(self,login_page):
         login_page.open_url(Urls.HOME_PAGE)
         login_page.login_user()
         assert login_page.click_profile()
             
-    @allure.title("Проверка сперехода в раздел «История заказов»")
+    @allure.title("Проверка перехода в раздел «История заказов»")
     def test_open_history_orders(self, login_page, profile_page):
         login_page.open_url(Urls.HOME_PAGE)
         login_page.login_user()

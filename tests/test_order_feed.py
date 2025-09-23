@@ -57,9 +57,10 @@ class TestOrderFeed:
         
         with allure.step(f'заказ номер: {number_order} есть в ленте заказов'):
             assert feed_orders_page.find_number_order_in_feed_orders(number_order)
-            login_page.click_profile()
-            profile_page.click_history_orders()
             
-        with allure.step(f'заказ номер: {number_order} есть истории заказов'):
+        login_page.click_profile()
+        profile_page.click_history_orders()
+            
+        with allure.step(f'заказ номер: {number_order} есть в истории заказов'):
             assert profile_page.find_number_order_in_hisroty_orders(number_order)
         

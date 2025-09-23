@@ -22,7 +22,7 @@ class MainPage(BasePage):
         self.wait_clickable_and_click(LB.BUTTON_INGREDIENT)
         return self.wait_visible(LE.DETAILS_INGREDIENT)
         
-    @allure.step('Закрываем плашку с деталями деталей ингредиента')
+    @allure.step('Нажимаем крестик - закрываем плашку с деталями ингредиента')
     def close_pop_up_ingredient(self): 
         self.find_element_and_click(LB.BUTTON_EXIT_POP_UP)
         return self.wait_invisible(LE.DETAILS_INGREDIENT)
